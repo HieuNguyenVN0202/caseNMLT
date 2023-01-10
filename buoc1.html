@@ -35,5 +35,74 @@
             </tr>
         </tbody>
     </table>
+    <script>
+        var data = [];
+        function checkID(id) {
+            var list = this.data;
+            for (var i = 0; i < list.length; i++) {
+                if(list[i].id == id) {
+                    return true;
+                }
+            }
+        }
+
+        function checkInfo() {
+            var id = document.getElementById('id').value;
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+
+            if (id && name && email && phone) {
+                return true;
+            } else {
+                alert('Vui lòng nhập đầy đủ thông tin trước khi thêm!');
+            }
+        }
+
+        function Add() {
+            var id = document.getElementById('id').value;
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+
+            var item = {
+                id: id,
+                name: name,
+                email: email,
+                phone: phone
+            };
+        
+            if (checkID(id)) {
+                alert("ID đã tồn tại, vui lòng nhập ID khác!");
+            } else if (checkInfo()) {
+                this.data.push(item);
+                console.log(data);
+                View();
+            }
+        }
+
+        function View() {
+            var list = this.data;
+
+            var datas = '<table><tr><td>Id</td><td>Name</td><td>Phone</td><td>Email</td><td>Action</td></tr>';
+            for (var i = 0; i < list.length; i++) {
+
+                datas += "<tr>";
+                datas += "<td>" + list[i].id + "</td>";
+                datas += "<td>" + list[i].name + "</td>";
+                datas += "<td>" + list[i].phone + "</td>";
+                datas += "<td>" + list[i].email + "</td>";
+                datas += "<td><button onclick='Deletes(" + list[i].id + ")'>Xóa</button>";
+                datas += "</tr>";
+            }
+            datas += '</table>';
+
+            if (list.length != 0) {
+                document.getElementById('database').innerHTML = datas;
+            } else {
+                document.getElementById('database').innerHTML = 'Dữ liệu trống!';
+            }
+        }
+    </script>
 </body>
 </html>
