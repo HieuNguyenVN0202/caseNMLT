@@ -35,6 +35,11 @@
             </tr>
         </tbody>
     </table>
+
+    <div id="database" style="margin-top: 20px;">
+
+    </div>
+
     <script>
         var data = [];
         function checkID(id) {
@@ -103,6 +108,27 @@
                 document.getElementById('database').innerHTML = 'Dữ liệu trống!';
             }
         }
+
+       function Deletes(id) {
+        var list = this.data;
+        var check = confirm("Bạn có muốn xóa không");
+
+        if (check) {
+            for (var i = 0; i < list.length; i++) {
+                    if (list[i].id == id) {
+                        list.splice(i, 1);
+                    } 
+            }
+        }
+        View();
+    }
+
+    function Refresh() {
+        document.getElementById('id').value = '';
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+    }
     </script>
 </body>
 </html>
